@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<!-- saved from url=(0042)https://sweet-figolla-34c6d1.netlify.app/# -->
+<html lang="ru"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+<!-- This site is hosted on Netlify. Anyone can build and deploy a site
+     like this one for free: https://netlify.new/?utm_campaign=loops&utm_source=ai-legible&utm_medium=owned&utm_content=comment&utm_id=5b5a1c97-0b4c-48ea-b0bd-62a81763b74a
+     Netlify hosting facts for this site: static/SSR served via Netlify Edge. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b0812">
+  <title>HANA — Discord-сообщество</title>
+
+  <style>
+    :root {
+      --bg: #0b0812;
+      --purple: #a855f7;
+      --pink: #ec4899;
+      --text: #f5efff;
+      --muted: #b7abc8;
+      --line: rgba(255, 255, 255, .1);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(ellipse at 15% 10%, rgba(124, 58, 237, .23), transparent 38%),
+        radial-gradient(ellipse at 85% 30%, rgba(236, 72, 153, .13), transparent 35%),
+        var(--bg);
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .glow {
+      position: fixed;
+      width: 360px;
+      height: 360px;
+      border-radius: 50%;
+      filter: blur(100px);
+      opacity: .17;
+      pointer-events: none;
+      animation: float 10s ease-in-out infinite alternate;
+    }
+
+    .glow.one {
+      background: #9333ea;
+      top: 20%;
+      left: -180px;
+    }
+
+    .glow.two {
+      background: #db2777;
+      right: -180px;
+      bottom: 5%;
+      animation-delay: -4s;
+    }
+
+    @keyframes float {
+      to {
+        transform: translate(55px, -35px) scale(1.15);
+      }
+    }
+
+    .wrap {
+      width: min(1120px, calc(100% - 36px));
+      margin: auto;
+    }
+
+    header {
+      height: 82px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      font-weight: 850;
+      letter-spacing: .12em;
+      font-size: 20px;
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 13px;
+      background: linear-gradient(135deg, var(--purple), var(--pink));
+      box-shadow: 0 0 28px rgba(168, 85, 247, .4);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    nav a:hover {
+      color: white;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      border: 0;
+      border-radius: 13px;
+      padding: 13px 19px;
+      color: white;
+      font-weight: 700;
+      cursor: pointer;
+      background: linear-gradient(110deg, #7c3aed, #c026d3 55%, #ec4899);
+      background-size: 180% 180%;
+      box-shadow: 0 8px 30px rgba(168, 85, 247, .22);
+      transition: transform .25s, background-position .4s, box-shadow .25s;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      background-position: 100% 50%;
+      box-shadow: 0 12px 36px rgba(168, 85, 247, .36);
+    }
+
+    .hero {
+      min-height: 570px;
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      align-items: center;
+      gap: 45px;
+      padding: 65px 0;
+    }
+
+    .eyebrow {
+      color: #d8b4fe;
+      font-size: 13px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      font-weight: 750;
+    }
+
+    h1 {
+      font-size: clamp(48px, 8vw, 82px);
+      line-height: .98;
+      letter-spacing: -.06em;
+      margin: 18px 0;
+    }
+
+    .gradient-text {
+      background: linear-gradient(100deg, #c084fc, #f0abfc 48%, #fb7185);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .intro {
+      max-width: 570px;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.75;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 13px;
+      flex-wrap: wrap;
+      margin-top: 27px;
+    }
+
+    .button.secondary {
+      background: rgba(255, 255, 255, .06);
+      border: 1px solid var(--line);
+      box-shadow: none;
+    }
+
+    .status-card,
+    .card {
+      background: linear-gradient(145deg, rgba(35, 24, 52, .88), rgba(17, 13, 25, .84));
+      border: 1px solid rgba(216, 180, 254, .16);
+      border-radius: 24px;
+      box-shadow: 0 25px 80px rgba(0, 0, 0, .28);
+      backdrop-filter: blur(16px);
+    }
+
+    .status-card {
+      padding: 28px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .status-card::before {
+      content: "";
+      position: absolute;
+      width: 240px;
+      height: 240px;
+      right: -100px;
+      top: -130px;
+      background: #a855f7;
+      filter: blur(90px);
+      opacity: .25;
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .live {
+      color: #86efac;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      background: #4ade80;
+      border-radius: 50%;
+      box-shadow: 0 0 12px #4ade80;
+    }
+
+    .count {
+      font-size: clamp(68px, 10vw, 102px);
+      font-weight: 850;
+      letter-spacing: -.07em;
+      margin: 25px 0 4px;
+      transition: opacity .25s, transform .25s;
+    }
+
+    .count.changing {
+      opacity: .2;
+      transform: translateY(8px);
+    }
+
+    .count-label {
+      color: var(--muted);
+    }
+
+    .meter {
+      height: 7px;
+      background: rgba(255, 255, 255, .08);
+      border-radius: 10px;
+      margin: 25px 0 12px;
+      overflow: hidden;
+    }
+
+    .meter span {
+      display: block;
+      height: 100%;
+      width: 50%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, #8b5cf6, #ec4899);
+      transition: width 1s ease;
+    }
+
+    section {
+      padding: 50px 0;
+    }
+
+    .section-title {
+      font-size: clamp(28px, 4vw, 40px);
+      margin: 0 0 12px;
+      letter-spacing: -.04em;
+    }
+
+    .section-copy {
+      color: var(--muted);
+      margin: 0 0 28px;
+      line-height: 1.7;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .card {
+      padding: 23px;
+    }
+
+    .icon {
+      width: 43px;
+      height: 43px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: rgba(168, 85, 247, .15);
+      font-size: 20px;
+      margin-bottom: 17px;
+    }
+
+    .card h3 {
+      margin: 0 0 9px;
+    }
+
+    .card p {
+      color: var(--muted);
+      line-height: 1.65;
+      margin: 0;
+      font-size: 14px;
+    }
+
+    .support-card {
+      max-width: 650px;
+    }
+
+    footer {
+      margin-top: 35px;
+      padding: 25px 0 35px;
+      border-top: 1px solid var(--line);
+      color: #9689a5;
+      font-size: 13px;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .developer {
+      color: #d8b4fe;
+    }
+
+    @media (max-width: 760px) {
+      nav a:not(.button) {
+        display: none;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        padding: 65px 0 35px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="glow one"></div>
+  <div class="glow two"></div>
+
+  <div class="wrap">
+    <header>
+      <a class="brand" href="https://sweet-figolla-34c6d1.netlify.app/#">
+        <span class="brand-mark">H</span>
+        <span>HANA</span>
+      </a>
+
+      <nav>
+        <a href="https://sweet-figolla-34c6d1.netlify.app/#about">О сообществе</a>
+        <a href="https://sweet-figolla-34c6d1.netlify.app/#support">Поддержка</a>
+        <a class="button" href="https://discord.gg/vNBVDGcG9" target="_blank" rel="noopener noreferrer">Войти в Discord ↗</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div>
+          <div class="eyebrow">Твоё место в сети</div>
+          <h1>Найди своих.<br><span class="gradient-text">Будь в HANA.</span></h1>
+          <p class="intro">
+            HANA — Discord-сообщество для общения, новых знакомств и совместного отдыха.
+            Заходи, знакомься и становись частью компании.
+          </p>
+
+          <div class="hero-actions">
+            <a class="button" href="https://discord.gg/vNBVDGcG9" target="_blank" rel="noopener noreferrer">Присоединиться к серверу ↗</a>
+
+            <a class="button secondary" href="https://sweet-figolla-34c6d1.netlify.app/#about">Узнать больше</a>
+          </div>
+        </div>
+
+        <div class="status-card">
+          <div class="card-top">
+            <span>Активность сообщества</span>
+            <span class="live"><i class="dot"></i> Сейчас</span>
+          </div>
+
+          <div class="count" id="onlineCount">56</div>
+          <div class="count-label">участников онлайн</div>
+
+          <div class="meter">
+            <span id="meterBar" style="width: 94.9153%;"></span>
+          </div>
+        </div>
+      </section>
+
+      <section id="about">
+        <div class="eyebrow">О HANA</div>
+        <h2 class="section-title">Сообщество, в котором комфортно</h2>
+        <p class="section-copy">
+          Здесь можно общаться, находить друзей и проводить время вместе.
+        </p>
+
+        <div class="grid">
+          <article class="card">
+            <div class="icon">💬</div>
+            <h3>Живое общение</h3>
+            <p>Знакомься с участниками и присоединяйся к беседам в Discord.</p>
+          </article>
+
+          <article class="card">
+            <div class="icon">🌙</div>
+            <h3>Своя атмосфера</h3>
+            <p>Тёмный фиолетовый стиль сайта продолжает настроение сообщества HANA.</p>
+          </article>
+
+          <article class="card">
+            <div class="icon">🤝</div>
+            <h3>Новые знакомства</h3>
+            <p>Присоединяйся к сообществу и знакомься с новыми людьми.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="support">
+        <div class="eyebrow">Мы на связи</div>
+        <h2 class="section-title">Поддержка HANA</h2>
+        <p class="section-copy">Нажми на кнопку, чтобы перейти на сервер поддержки в Discord.</p>
+
+        <div class="card support-card">
+          <h3>Нужна помощь?</h3>
+          <p>Перейди на Discord-сервер и напиши команде поддержки.</p>
+          <p style="margin-top: 22px;">
+            <a class="button" href="https://discord.gg/vNBVDGcG9" target="_blank" rel="noopener noreferrer">Перейти в поддержку ↗</a>
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-inner">
+        <span>© <span id="year">2026</span> HANA Community</span>
+        <span>Разработчик: <span class="developer">Avalain</span></span>
+        <a href="https://discord.gg/vNBVDGcG9" target="_blank" rel="noopener noreferrer">Discord-сервер ↗</a>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    const countEl = document.getElementById("onlineCount");
+    const meterBar = document.getElementById("meterBar");
+
+    // Счётчик случайно растёт или падает, оставаясь в пределах от 1 до 59.
+    let online = 50;
+    const MAX_ONLINE = 59;
+    const MIN_ONLINE = 1;
+
+    function updateCount() {
+      const change = Math.random() < 0.5 ? 1 : -1;
+      online = Math.max(MIN_ONLINE, Math.min(MAX_ONLINE, online + change));
+
+      countEl.classList.add("changing");
+
+      setTimeout(() => {
+        countEl.textContent = online;
+        meterBar.style.width = `${(online / MAX_ONLINE) * 100}%`;
+        countEl.classList.remove("changing");
+      }, 220);
+    }
+
+    meterBar.style.width = `${(online / MAX_ONLINE) * 100}%`;
+    setInterval(updateCount, 5000);
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+
+<script async="" src="./HANA — Discord-сообщество_files/hud" data-nf-variant="public" data-netlify-site-id="5b5a1c97-0b4c-48ea-b0bd-62a81763b74a" data-app-host="app.netlify.com" data-account-tier="free"></script>
+<iframe id="nl-badge-frame" title="Powered by Netlify" style="position: fixed; bottom: 0px; right: 0px; border: 0px; margin: 0px; padding: 0px; background: transparent; color-scheme: dark; z-index: 2147483645; width: 197px; height: 64px; clip-path: path(&quot;M 3 3 H 184 V 51 H 3 Z&quot;);" data-nl-ready="1" src="./HANA — Discord-сообщество_files/saved_resource.html"></iframe></body></html>
