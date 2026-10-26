@@ -152,8 +152,8 @@
       color: transparent;
       background: linear-gradient(110deg, #d5b7ff 5%, #f78cc9 48%, #a98aff 95%);
       background-size: 200% auto;
-      background-clip: text;
       -webkit-background-clip: text;
+      background-clip: text;
       animation: text-gradient 6s ease-in-out infinite alternate;
       filter: drop-shadow(0 0 28px #bc7bff35);
     }
@@ -179,7 +179,7 @@
       background: var(--green);
       box-shadow: 0 0 14px var(--green);
       vertical-align: middle;
-      animation: pulse 2s ease-in-out infinite;
+      animation: pulse 2s infinite ease-in-out;
     }
 
     .member-count {
@@ -233,7 +233,7 @@
     .hero-button { margin-top: 26px; }
 
     /* Секции */
-    section.content-section { padding: 82px 0; }
+    .content-section { padding: 82px 0; }
 
     .section-title {
       margin: 0 0 12px;
@@ -298,7 +298,11 @@
     }
 
     .feature-icon { font-size: 24px; }
-    .feature h3 { margin: 10px 0 5px; font-size: 16px; }
+
+    .feature h3 {
+      margin: 10px 0 5px;
+      font-size: 16px;
+    }
 
     .feature p {
       margin: 0;
@@ -344,15 +348,49 @@
     }
 
     .role-icon { font-size: 28px; }
-    .role-card h3 { margin: 15px 0 2px; font-size: 20px; }
+
+    .role-card h3 {
+      margin: 15px 0 2px;
+      font-size: 20px;
+    }
 
     .price {
       color: transparent;
       background: var(--gradient);
-      background-clip: text;
       -webkit-background-clip: text;
+      background-clip: text;
       font-size: 27px;
       font-weight: 800;
+    }
+
+    .old-price {
+      margin-left: 7px;
+      color: #a99daa;
+      font-size: 14px;
+      font-weight: 400;
+      text-decoration: line-through;
+    }
+
+    .discount-label {
+      display: inline-flex;
+      width: fit-content;
+      align-items: center;
+      gap: 6px;
+      margin-top: 9px;
+      padding: 7px 11px;
+      border: 1px solid #f078bd55;
+      border-radius: 999px;
+      color: #ffd1e9;
+      background: linear-gradient(110deg, #f078bd24, #bd72ff20);
+      box-shadow: 0 0 18px #f078bd12;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .discount-label::before {
+      content: "✦";
+      color: #ff9bd2;
+      font-size: 13px;
     }
 
     .role-card p {
@@ -494,10 +532,10 @@
     .payment-placeholder {
       margin: 17px 0;
       padding: 15px;
-      border: 1px dashed #c58dff55;
+      border: 1px solid #f078bd35;
       border-radius: 14px;
       color: #e8dce8;
-      background: #100b1280;
+      background: linear-gradient(110deg, #f078bd12, #9b72ff0c);
       font-size: 13px;
       line-height: 1.7;
     }
@@ -566,11 +604,7 @@
       pointer-events: none;
     }
 
-    /*
-      Анимация прокручиваемых блоков.
-      JS добавляет .is-visible при появлении в области экрана
-      и удаляет её, когда блок уходит из области видимости.
-    */
+    /* Анимация появления блоков */
     .reveal {
       opacity: 0;
       transform: translateY(32px);
@@ -585,18 +619,12 @@
     }
 
     .features .reveal:nth-child(2),
-    .roles-grid .reveal:nth-child(2) {
-      transition-delay: .1s;
-    }
+    .roles-grid .reveal:nth-child(2) { transition-delay: .1s; }
 
     .features .reveal:nth-child(3),
-    .roles-grid .reveal:nth-child(3) {
-      transition-delay: .2s;
-    }
+    .roles-grid .reveal:nth-child(3) { transition-delay: .2s; }
 
-    .roles-grid .reveal:nth-child(4) {
-      transition-delay: .3s;
-    }
+    .roles-grid .reveal:nth-child(4) { transition-delay: .3s; }
 
     /* Анимации */
     @keyframes hero-gradient {
@@ -755,44 +783,66 @@
       <div class="container">
         <div class="roles-header reveal">
           <h2 class="section-title">Роли HANA</h2>
-          <p class="section-lead">Выбери роль, чтобы посмотреть инструкцию по покупке.</p>
+          <p class="section-lead">
+            Сейчас на все роли действует скидка 50%. Выбери роль, чтобы посмотреть цену и инструкцию.
+          </p>
         </div>
 
         <div class="roles-grid">
           <article class="role-card reveal">
             <div class="role-icon">💎</div>
             <h3>Premium</h3>
-            <div class="price">499 ₽</div>
+            <div class="price">
+              250 ₽ <span class="old-price">499 ₽</span>
+            </div>
+            <span class="discount-label">Сейчас скидка 50%</span>
             <p>Особая роль для поддержки сообщества.</p>
             <button class="button buy-button" type="button"
-                    data-role="Premium" data-price="499 ₽">Купить</button>
+                    data-role="Premium" data-price="250 ₽" data-old-price="499 ₽">
+              Купить
+            </button>
           </article>
 
           <article class="role-card reveal">
             <div class="role-icon">👑</div>
             <h3>VIP</h3>
-            <div class="price">399 ₽</div>
+            <div class="price">
+              200 ₽ <span class="old-price">399 ₽</span>
+            </div>
+            <span class="discount-label">Сейчас скидка 50%</span>
             <p>Выделяйся среди участников HANA.</p>
             <button class="button buy-button" type="button"
-                    data-role="VIP" data-price="399 ₽">Купить</button>
+                    data-role="VIP" data-price="200 ₽" data-old-price="399 ₽">
+              Купить
+            </button>
           </article>
 
           <article class="role-card reveal">
             <div class="role-icon">🛡️</div>
             <h3>Ст. Админ</h3>
-            <div class="price">299 ₽</div>
+            <div class="price">
+              150 ₽ <span class="old-price">299 ₽</span>
+            </div>
+            <span class="discount-label">Сейчас скидка 50%</span>
             <p>Перед покупкой ознакомься с условиями роли.</p>
             <button class="button buy-button" type="button"
-                    data-role="Ст. Админ" data-price="299 ₽">Купить</button>
+                    data-role="Ст. Админ" data-price="150 ₽" data-old-price="299 ₽">
+              Купить
+            </button>
           </article>
 
           <article class="role-card reveal">
             <div class="role-icon">⚙️</div>
             <h3>Админ</h3>
-            <div class="price">199 ₽</div>
+            <div class="price">
+              100 ₽ <span class="old-price">199 ₽</span>
+            </div>
+            <span class="discount-label">Сейчас скидка 50%</span>
             <p>Перед покупкой ознакомься с условиями роли.</p>
             <button class="button buy-button" type="button"
-                    data-role="Админ" data-price="199 ₽">Купить</button>
+                    data-role="Админ" data-price="100 ₽" data-old-price="199 ₽">
+              Купить
+            </button>
           </article>
         </div>
       </div>
@@ -804,23 +854,23 @@
           <span class="instruction-label">Покупка роли</span>
           <h2 class="section-title">Инструкция по оформлению</h2>
           <p class="section-lead">
-            Выбери роль выше — здесь появятся её название и цена.
-            Перед оплатой обязательно проверь все данные.
+            Для оформления роли напишите пользователю 𝑨𝒗𝒂𝒍𝒂𝒊𝒏.
+            Перед оплатой обязательно проверьте роль и стоимость.
           </p>
         </div>
 
         <div class="purchase-layout">
           <div class="instruction-card reveal">
-            <h3>Как купить роль</h3>
+            <h3>Как оформить роль</h3>
             <p class="card-description">
-              Выполни шаги по порядку, чтобы мы могли правильно оформить покупку.
+              Выполни шаги по порядку, чтобы правильно оформить покупку.
             </p>
 
             <ol class="steps">
               <li>Нажми «Купить» у нужной роли и проверь название и стоимость заказа.</li>
-              <li>Напиши администрации через официальный Discord и сообщи, какую роль хочешь приобрести.</li>
-              <li>Получи актуальные условия и реквизиты только от администрации сервера.</li>
-              <li>После оплаты отправь подтверждение платежа администратору в личные сообщения.</li>
+              <li>Для оформления роли напиши пользователю <strong>𝑨𝒗𝒂𝒍𝒂𝒊𝒏</strong>.</li>
+              <li>Уточни у пользователя условия, итоговую стоимость и способы оплаты.</li>
+              <li>После оплаты отправь подтверждение платежа пользователю.</li>
               <li>Дождись подтверждения и проверь, что роль появилась на сервере.</li>
             </ol>
           </div>
@@ -835,26 +885,26 @@
             </div>
 
             <div class="selected-role">
-              <span>Стоимость:</span>
+              <span>Цена со скидкой:</span>
               <strong id="selectedPrice">—</strong>
             </div>
 
             <div class="payment-placeholder">
-              <strong>Важно:</strong> не вводи данные банковской карты на этой
-              странице. Получай реквизиты только от проверенной администрации
-              через официальный Discord-сервер.
+              <strong>Сейчас действует скидка 50%.</strong>
+              Итоговую стоимость и условия оплаты уточни у пользователя
+              <strong>𝑨𝒗𝒂𝒍𝒂𝒊𝒏</strong>. Не вводи данные банковской карты на этой странице.
             </div>
 
             <a class="button"
                href="https://discord.gg/Vcdm5D7KY5"
                target="_blank"
                rel="noopener noreferrer">
-              Написать администрации
+              Открыть Discord
             </a>
 
             <p class="safe-note">
-              Если реквизиты или сообщение вызывают сомнения — не отправляй деньги
-              и уточни информацию у владельца сервера.
+              Перед оплатой убедись, что общаешься с нужным пользователем,
+              и уточни условия покупки.
             </p>
           </aside>
         </div>
@@ -890,14 +940,15 @@
     <div class="container">HANA · Discord-сообщество</div>
   </footer>
 
-  <div class="version-label">v1.3</div>
+  <div class="version-label">v1.6</div>
 
   <script>
     // Выбор роли и переход к инструкции
     document.querySelectorAll(".buy-button").forEach(button => {
       button.addEventListener("click", () => {
         document.getElementById("selectedRole").textContent = button.dataset.role;
-        document.getElementById("selectedPrice").textContent = button.dataset.price;
+        document.getElementById("selectedPrice").textContent =
+          `${button.dataset.price} (вместо ${button.dataset.oldPrice})`;
 
         document.getElementById("instruction").scrollIntoView({
           behavior: "smooth",
@@ -906,12 +957,7 @@
       });
     });
 
-    /*
-      Повторная анимация при каждой прокрутке:
-      блок появляется в области экрана — добавляем класс;
-      блок уходит из области экрана — убираем класс.
-      Поэтому при следующем появлении анимация запускается снова.
-    */
+    // Анимация блоков при прокрутке
     const revealElements = document.querySelectorAll(".reveal");
 
     if ("IntersectionObserver" in window) {
@@ -923,18 +969,11 @@
             entry.target.classList.remove("is-visible");
           }
         });
-      }, {
-        threshold: 0.12
-      });
+      }, { threshold: 0.12 });
 
-      revealElements.forEach(element => {
-        revealObserver.observe(element);
-      });
+      revealElements.forEach(element => revealObserver.observe(element));
     } else {
-      // Запасной вариант для старых браузеров
-      revealElements.forEach(element => {
-        element.classList.add("is-visible");
-      });
+      revealElements.forEach(element => element.classList.add("is-visible"));
     }
   </script>
 </body>
