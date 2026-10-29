@@ -14,7 +14,6 @@
     :root {
       --bg: #090710;
       --pink: #ff72c6;
-      --violet: #a879ff;
       --text: #f8f4ff;
       --muted: #aaa1b8;
       --line: rgba(255, 255, 255, .1);
@@ -86,7 +85,6 @@
       margin: auto;
       display: flex;
       align-items: center;
-      justify-content: flex-start;
       gap: 32px;
     }
 
@@ -110,14 +108,13 @@
     .discord-link {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
       margin-left: auto;
       padding: 11px 17px;
       border: 0;
       border-radius: 13px;
       color: #fff;
-      background: linear-gradient(110deg, #7652dc, #d34cae);
-      box-shadow: 0 7px 24px rgba(185, 78, 220, .2);
+      background: linear-gradient(110deg, #f04daa, #ff79c9);
+      box-shadow: 0 7px 24px rgba(255, 80, 180, .2);
       font-size: 13px;
       font-weight: 700;
       transition: transform .25s, box-shadow .25s, filter .25s;
@@ -126,17 +123,7 @@
     .discord-link:hover {
       transform: translateY(-2px);
       filter: brightness(1.12);
-      box-shadow: 0 10px 30px rgba(185, 78, 220, .34);
-    }
-
-    .discord-link .arrow {
-      font-size: 16px;
-      line-height: 1;
-      transition: transform .25s;
-    }
-
-    .discord-link:hover .arrow {
-      transform: translate(2px, -2px);
+      box-shadow: 0 10px 30px rgba(255, 80, 180, .34);
     }
 
     .button {
@@ -156,13 +143,13 @@
     .button:hover {
       transform: translateY(-3px);
       background: rgba(255, 255, 255, .1);
-      box-shadow: 0 12px 35px rgba(168, 121, 255, .18);
+      box-shadow: 0 12px 35px rgba(255, 114, 198, .18);
     }
 
     .button.primary {
       border: 0;
-      background: linear-gradient(110deg, #9c68ff, #fa68bf);
-      box-shadow: 0 10px 35px rgba(203, 82, 255, .22);
+      background: linear-gradient(110deg, #f04daa, #ff79c9);
+      box-shadow: 0 10px 35px rgba(255, 82, 177, .22);
     }
 
     .hero {
@@ -454,7 +441,7 @@
       border-radius: 24px;
       background: #171220;
       box-shadow: 0 25px 100px rgba(0, 0, 0, .55),
-                  0 0 55px rgba(169, 102, 255, .12);
+                  0 0 55px rgba(255, 102, 190, .12);
       transform: translateY(18px) scale(.98);
       transition: transform .35s cubic-bezier(.2, .8, .2, 1);
     }
@@ -483,7 +470,36 @@
     }
 
     .modal-box li { margin: 7px 0; padding-left: 4px; }
-    .modal-box .button { width: 100%; margin-top: 8px; }
+
+    .modal-actions {
+      display: grid;
+      grid-template-columns: minmax(110px, .7fr) minmax(0, 1.5fr);
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .modal-actions .button {
+      width: 100%;
+      min-width: 0;
+      min-height: 48px;
+      padding: 9px 14px;
+      border: 0;
+      border-radius: 14px;
+      color: #fff;
+      background: linear-gradient(110deg, #ed4ca9, #ff79c9);
+      box-shadow: 0 7px 22px rgba(255, 80, 180, .2);
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.4;
+      text-align: center;
+      white-space: normal;
+      overflow-wrap: anywhere;
+    }
+
+    .modal-actions .button:hover {
+      background: linear-gradient(110deg, #f45ab3, #ff8bd1);
+      box-shadow: 0 10px 28px rgba(255, 80, 180, .32);
+    }
 
     @media (max-width: 900px) {
       .roles { grid-template-columns: repeat(2, 1fr); }
@@ -491,7 +507,6 @@
 
     @media (max-width: 600px) {
       .topbar { padding: 11px 15px; }
-
       .nav { gap: 14px; }
 
       .nav-links {
@@ -500,7 +515,6 @@
       }
 
       .discord-link {
-        gap: 5px;
         padding: 10px 11px;
         font-size: 11px;
         white-space: nowrap;
@@ -512,12 +526,24 @@
       .role-card { min-height: 310px; }
       .notice { padding: 18px; }
       .modal-box { padding: 25px 21px; }
+
+      .modal-actions {
+        grid-template-columns: minmax(85px, .65fr) minmax(0, 1.5fr);
+        gap: 8px;
+      }
+
+      .modal-actions .button {
+        padding: 9px 8px;
+        font-size: 12px;
+      }
     }
 
     @media (max-width: 390px) {
       .nav { gap: 10px; }
       .nav-links { gap: 9px; font-size: 10px; }
       .discord-link { padding: 9px; font-size: 10px; }
+      .modal-actions { grid-template-columns: 1fr; }
+      .modal-actions .button { min-height: 44px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -545,7 +571,7 @@
       </div>
 
       <a class="discord-link" href="https://discord.gg/hx5rzG8UU6" target="_blank" rel="noopener">
-        Открыть Discord <span class="arrow">↗</span>
+        Открыть Discord
       </a>
     </nav>
   </header>
@@ -564,7 +590,10 @@
         </div>
       </div>
 
-      <div class="scroll-cue">ПРОКРУТИ ВНИЗ <span>⌄</span></div>
+      <div class="scroll-cue">
+        ПРОКРУТИ ВНИЗ
+        <span aria-hidden="true">⌄</span>
+      </div>
     </section>
 
     <section id="roles">
@@ -581,7 +610,7 @@
             <h3>ɪᴍᴘᴇʀᴀᴛᴏʀ</h3>
             <div class="price">1855 <small>₽</small></div>
             <p>Максимальные права на сервере и полный набор возможностей роли.</p>
-            <button class="button buy-button" data-role="ɪᴍᴘᴇʀᴀᴛᴏʀ">Купить роль</button>
+            <button class="button buy-button" data-role="ɪᴍᴘᴇʀᴀᴛᴏʀ">Купить</button>
           </article>
 
           <article class="role-card premium reveal">
@@ -589,7 +618,7 @@
             <h3>Premium</h3>
             <div class="price">680 <small>₽</small></div>
             <p>Широкие права на сервере, кроме возможности банить участников и выдавать роли.</p>
-            <button class="button buy-button" data-role="Premium">Купить роль</button>
+            <button class="button buy-button" data-role="Premium">Купить</button>
           </article>
 
           <article class="role-card vip reveal">
@@ -597,7 +626,7 @@
             <h3>VIP</h3>
             <div class="price">310 <small>₽</small></div>
             <p>Особая роль участника. Нельзя выдавать наказания или роли другим пользователям.</p>
-            <button class="button buy-button" data-role="VIP">Купить роль</button>
+            <button class="button buy-button" data-role="VIP">Купить</button>
           </article>
 
           <article class="role-card admin reveal">
@@ -605,7 +634,7 @@
             <h3>Админ</h3>
             <div class="price">107 <small>₽</small></div>
             <p>Помощь разработчику: поиск багов и содействие в поддержании порядка на сервере.</p>
-            <button class="button buy-button" data-role="Админ">Купить роль</button>
+            <button class="button buy-button" data-role="Админ">Купить</button>
           </article>
         </div>
 
@@ -623,7 +652,7 @@
           </div>
           <h2>Увидимся на HANA</h2>
           <p>Заходи в сообщество, знакомься с участниками и задавай вопросы администрации.</p>
-          <a class="button primary" href="https://discord.gg/hx5rzG8UU6" target="_blank" rel="noopener">Перейти в Discord ↗</a>
+          <a class="button primary" href="https://discord.gg/hx5rzG8UU6" target="_blank" rel="noopener">Перейти в Discord</a>
         </div>
       </div>
     </section>
@@ -636,13 +665,18 @@
       <button class="modal-close" id="closeModal" aria-label="Закрыть">×</button>
       <h2 id="modalTitle">Как получить роль</h2>
       <p>Вы выбрали: <span class="chosen-role" id="chosenRole"></span></p>
+
       <ol>
         <li>Зайдите на наш Discord-сервер.</li>
         <li>Найдите среди участников пользователя с ролью «HANA».</li>
         <li>Напишите ему в личные сообщения и укажите выбранную роль.</li>
         <li>После согласования вам выдадут роль и предоставят счёт для оплаты.</li>
       </ol>
-      <a class="button primary" href="https://discord.gg/hx5rzG8UU6" target="_blank" rel="noopener">Открыть Discord ↗</a>
+
+      <div class="modal-actions">
+        <a class="button" href="https://discord.gg/hx5rzG8UU6" target="_blank" rel="noopener">Купить</a>
+        <a class="button" href="https://discord.gg/XMXp5eRH3B" target="_blank" rel="noopener">Подать заявку на бесплатную роль</a>
+      </div>
     </div>
   </div>
 
@@ -709,6 +743,7 @@
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
       const count = Math.min(75, Math.floor(width / 17));
+
       particles = Array.from({ length: count }, () => ({
         x: Math.random() * width,
         y: Math.random() * height,
