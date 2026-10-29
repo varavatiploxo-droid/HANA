@@ -263,11 +263,6 @@
       font-size: clamp(30px, 5vw, 46px);
     }
 
-    .section-heading p {
-      margin: 0;
-      color: var(--muted);
-    }
-
     .roles {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -357,15 +352,19 @@
     }
 
     .notice {
-      max-width: 900px;
+      display: table;
+      width: fit-content;
+      max-width: 100%;
       margin: 34px auto 0;
-      padding: 23px 25px;
-      border: 1px solid rgba(255, 114, 198, .2);
-      border-radius: 18px;
+      padding: 16px 20px;
+      border: 1px solid rgba(255, 114, 198, .28);
+      border-radius: 16px;
       color: #d8cfe0;
       background: linear-gradient(120deg, rgba(168, 121, 255, .09), rgba(255, 114, 198, .07));
       font-size: 13px;
       line-height: 1.8;
+      white-space: normal;
+      overflow-wrap: anywhere;
     }
 
     .notice strong { color: #ff9ed7; }
@@ -550,7 +549,7 @@
       section { padding: 62px 17px; }
       .roles { grid-template-columns: 1fr; }
       .role-card { min-height: 310px; }
-      .notice { padding: 18px; }
+      .notice { padding: 14px 16px; font-size: 12px; }
       .modal-box { padding: 25px 21px; }
 
       .modal-actions {
@@ -608,7 +607,7 @@
         <div class="eyebrow"><span class="status-dot"></span> DISCORD-СООБЩЕСТВО</div>
         <h1>HANA</h1>
         <h2>Найди своё место в сообществе</h2>
-        <p>Выбирай роль, поддерживай сервер и становись частью мира HANA. Ознакомься с возможностями и правилами перед покупкой.</p>
+        <p>Здесь можно пообщаться, найти единомышленников и просто приятно провести время. Заходи на сервер — будем рады знакомству!</p>
 
         <div class="hero-actions">
           <a class="button primary" href="#roles">Посмотреть роли</a>
@@ -627,7 +626,6 @@
         <div class="section-heading reveal">
           <div class="tag">Роли и возможности</div>
           <h2>Выбери свою роль</h2>
-          <p>Нажми «Купить», чтобы увидеть инструкцию по получению роли.</p>
         </div>
 
         <div class="roles">
@@ -665,7 +663,7 @@
         </div>
 
         <div class="notice reveal" id="rules">
-          <strong>Важно:</strong> эти роли также можно получить бесплатно — отправьте заявку главному администратору с ролью «HANA». Если заявку одобрят, вам выдадут выбранную роль. За нарушение обязанностей или незнание правил сервера можно получить бессрочный бан.
+          <strong>Важно:</strong> любую роль, которая есть на сервере, вы также можете получить бесплатно, написав на Discord-сервере в чате «заявка на роль».
         </div>
       </div>
     </section>
@@ -715,7 +713,7 @@
         Зайдите на Discord-сервер и напишите свою заявку в чат <strong>«заявка на роль»</strong>. Скопируйте образец ниже и заполните ответы.
       </div>
 
-      <pre class="application-template">1. Сколько вам лет -13/32
+      <pre class="application-template">1. Сколько вам лет — 13/32
 2. Сколько времени в сутки вы можете уделять модерации — 34 минут/24 часа
 3. Какая ваша сильная сторона —
 4. Как давно вы на сервере — 1 час/100 лет
