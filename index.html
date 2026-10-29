@@ -436,6 +436,8 @@
     .modal-box {
       position: relative;
       width: min(100%, 510px);
+      max-height: min(85vh, 760px);
+      overflow-y: auto;
       padding: 30px;
       border: 1px solid rgba(255, 255, 255, .13);
       border-radius: 24px;
@@ -499,6 +501,30 @@
     .modal-actions .button:hover {
       background: linear-gradient(110deg, #f45ab3, #ff8bd1);
       box-shadow: 0 10px 28px rgba(255, 80, 180, .32);
+    }
+
+    .application-instructions {
+      margin: 16px 0;
+      padding: 16px;
+      border: 1px solid rgba(255, 114, 198, .2);
+      border-radius: 16px;
+      color: #d8cfe0;
+      background: rgba(255, 114, 198, .05);
+      font-size: 14px;
+      line-height: 1.75;
+    }
+
+    .application-template {
+      margin: 14px 0 0;
+      padding: 16px;
+      overflow-x: auto;
+      border: 1px solid rgba(255, 255, 255, .1);
+      border-radius: 14px;
+      color: #eee6f5;
+      background: rgba(0, 0, 0, .25);
+      font: 13px/1.8 "Manrope", sans-serif;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
     }
 
     @media (max-width: 900px) {
@@ -660,10 +686,11 @@
 
   <footer>HANA · Сообщество Discord</footer>
 
-  <div class="modal" id="buyModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <!-- Окно покупки роли -->
+  <div class="modal" id="buyModal" role="dialog" aria-modal="true" aria-labelledby="buyModalTitle">
     <div class="modal-box">
-      <button class="modal-close" id="closeModal" aria-label="Закрыть">×</button>
-      <h2 id="modalTitle">Как получить роль</h2>
+      <button class="modal-close" data-close-modal aria-label="Закрыть">×</button>
+      <h2 id="buyModalTitle">Как получить роль</h2>
       <p>Вы выбрали: <span class="chosen-role" id="chosenRole"></span></p>
 
       <ol>
@@ -675,36 +702,77 @@
 
       <div class="modal-actions">
         <a class="button" href="https://discord.gg/hx5rzG8UU6" target="_blank" rel="noopener">Купить</a>
-        <a class="button" href="https://discord.gg/XMXp5eRH3B" target="_blank" rel="noopener">Подать заявку на бесплатную роль</a>
+        <button class="button" id="openApplicationModal">Подать заявку на бесплатную роль</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Окно инструкции для бесплатной заявки -->
+  <div class="modal" id="applicationModal" role="dialog" aria-modal="true" aria-labelledby="applicationModalTitle">
+    <div class="modal-box">
+      <button class="modal-close" data-close-modal aria-label="Закрыть">×</button>
+      <h2 id="applicationModalTitle">Заявка на бесплатную роль</h2>
+
+      <div class="application-instructions">
+        Зайдите на Discord-сервер и напишите свою заявку в чат <strong>«заявка на роль»</strong>. Скопируйте образец ниже и заполните ответы.
+      </div>
+
+      <pre class="application-template">1. Сколько вам лет -13/32
+2. Сколько времени в сутки вы можете уделять модерации — 34 минут/24 часа
+3. Какая ваша сильная сторона —
+4. Как давно вы на сервере — 1 час/100 лет
+5. Ознакомились ли вы с правилами сервера — да/нет</pre>
+
+      <div class="modal-actions">
+        <button class="button" id="backToBuyModal">Назад</button>
+        <a class="button" href="https://discord.gg/ctz7h4hcUx" target="_blank" rel="noopener">Подать заявку</a>
       </div>
     </div>
   </div>
 
   <script>
-    const modal = document.getElementById("buyModal");
+    const buyModal = document.getElementById("buyModal");
+    const applicationModal = document.getElementById("applicationModal");
     const chosenRole = document.getElementById("chosenRole");
+
+    function openModal(modal) {
+      document.querySelectorAll(".modal").forEach(item => item.classList.remove("open"));
+      modal.classList.add("open");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeAllModals() {
+      document.querySelectorAll(".modal").forEach(item => item.classList.remove("open"));
+      document.body.style.overflow = "";
+    }
 
     document.querySelectorAll(".buy-button").forEach(button => {
       button.addEventListener("click", () => {
         chosenRole.textContent = button.dataset.role;
-        modal.classList.add("open");
-        document.body.style.overflow = "hidden";
+        openModal(buyModal);
       });
     });
 
-    function closeModal() {
-      modal.classList.remove("open");
-      document.body.style.overflow = "";
-    }
+    document.getElementById("openApplicationModal").addEventListener("click", () => {
+      openModal(applicationModal);
+    });
 
-    document.getElementById("closeModal").addEventListener("click", closeModal);
+    document.getElementById("backToBuyModal").addEventListener("click", () => {
+      openModal(buyModal);
+    });
 
-    modal.addEventListener("click", event => {
-      if (event.target === modal) closeModal();
+    document.querySelectorAll("[data-close-modal]").forEach(button => {
+      button.addEventListener("click", closeAllModals);
+    });
+
+    document.querySelectorAll(".modal").forEach(modal => {
+      modal.addEventListener("click", event => {
+        if (event.target === modal) closeAllModals();
+      });
     });
 
     document.addEventListener("keydown", event => {
-      if (event.key === "Escape") closeModal();
+      if (event.key === "Escape") closeAllModals();
     });
 
     const revealObserver = new IntersectionObserver(entries => {
