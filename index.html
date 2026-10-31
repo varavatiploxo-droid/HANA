@@ -62,7 +62,12 @@
     }
 
     .aurora-one { background: #963cff; top: 8%; left: -230px; }
-    .aurora-two { background: #ff3aaa; right: -250px; top: 42%; animation-delay: -7s; }
+    .aurora-two {
+      background: #ff3aaa;
+      right: -250px;
+      top: 42%;
+      animation-delay: -7s;
+    }
 
     @keyframes drift {
       to { transform: translate(100px, 80px) scale(1.2); }
@@ -280,8 +285,9 @@
       border: 1px solid var(--line);
       border-radius: 22px;
       background: linear-gradient(150deg, rgba(29, 22, 42, .9), rgba(14, 11, 21, .92));
-      transition: transform .4s cubic-bezier(.2, .8, .2, 1),
-                  border-color .4s, box-shadow .4s;
+      transition:
+        border-color .4s,
+        box-shadow .4s;
     }
 
     .role-card::before {
@@ -299,10 +305,10 @@
     }
 
     .role-card:hover {
-      transform: translateY(-9px);
       border-color: color-mix(in srgb, var(--accent), transparent 45%);
-      box-shadow: 0 22px 60px rgba(0, 0, 0, .3),
-                  0 0 32px color-mix(in srgb, var(--accent), transparent 88%);
+      box-shadow:
+        0 22px 60px rgba(0, 0, 0, .3),
+        0 0 32px color-mix(in srgb, var(--accent), transparent 88%);
     }
 
     .role-card:hover::before { opacity: .4; }
@@ -322,16 +328,6 @@
       color: var(--accent);
       background: color-mix(in srgb, var(--accent), transparent 86%);
       font-size: 21px;
-    }
-
-    .role-card.icon-play .role-icon {
-      animation: icon-arrive .75s cubic-bezier(.2, .8, .2, 1) both;
-    }
-
-    @keyframes icon-arrive {
-      0% { transform: translateY(18px) rotate(-22deg) scale(.55); opacity: .25; }
-      65% { transform: translateY(-4px) rotate(7deg) scale(1.12); opacity: 1; }
-      100% { transform: translateY(0) rotate(0) scale(1); opacity: 1; }
     }
 
     .role-card h3 { margin: 0 0 8px; font-size: 17px; }
@@ -373,8 +369,9 @@
       padding: 45px 28px;
       border: 1px solid var(--line);
       border-radius: 26px;
-      background: radial-gradient(ellipse at 50% 0%, rgba(168, 121, 255, .16), transparent 62%),
-                  rgba(20, 16, 28, .74);
+      background:
+        radial-gradient(ellipse at 50% 0%, rgba(168, 121, 255, .16), transparent 62%),
+        rgba(20, 16, 28, .74);
       text-align: center;
     }
 
@@ -398,6 +395,7 @@
       text-align: center;
     }
 
+    /* Плавное появление блоков */
     .reveal {
       opacity: 0;
       transform: translateY(28px);
@@ -409,6 +407,10 @@
       transform: translateY(0);
     }
 
+    /*
+      Задержка появления не должна менять задержку hover-анимаций.
+      Поэтому transition-delay здесь применяется только к opacity/transform появления.
+    */
     .role-card:nth-child(2) { transition-delay: .08s; }
     .role-card:nth-child(3) { transition-delay: .16s; }
     .role-card:nth-child(4) { transition-delay: .24s; }
@@ -441,8 +443,9 @@
       border: 1px solid rgba(255, 255, 255, .13);
       border-radius: 24px;
       background: #171220;
-      box-shadow: 0 25px 100px rgba(0, 0, 0, .55),
-                  0 0 55px rgba(255, 102, 190, .12);
+      box-shadow:
+        0 25px 100px rgba(0, 0, 0, .55),
+        0 0 55px rgba(255, 102, 190, .12);
       transform: translateY(18px) scale(.98);
       transition: transform .35s cubic-bezier(.2, .8, .2, 1);
     }
@@ -604,14 +607,23 @@
   <main>
     <section class="hero" id="home">
       <div class="hero-content reveal">
-        <div class="eyebrow"><span class="status-dot"></span> DISCORD-СООБЩЕСТВО</div>
+        <div class="eyebrow">
+          <span class="status-dot"></span>
+          DISCORD-СООБЩЕСТВО
+        </div>
+
         <h1>HANA</h1>
         <h2>Найди своё место в сообществе</h2>
-        <p>Здесь можно пообщаться, найти единомышленников и просто приятно провести время. Заходи на сервер — будем рады знакомству!</p>
+        <p>
+          Здесь можно пообщаться, найти единомышленников и просто приятно провести время.
+          Заходи на сервер — будем рады знакомству!
+        </p>
 
         <div class="hero-actions">
           <a class="button primary" href="#roles">Посмотреть роли</a>
-          <a class="button" href="https://discord.gg/hx5rzG8UU6" target="_blank" rel="noopener">Присоединиться к серверу</a>
+          <a class="button" href="https://discord.gg/hx5rzG8UU6" target="_blank" rel="noopener">
+            Присоединиться к серверу
+          </a>
         </div>
       </div>
 
@@ -663,7 +675,8 @@
         </div>
 
         <div class="notice reveal" id="rules">
-          <strong>Важно:</strong> любую роль, которая есть на сервере, вы также можете получить бесплатно, написав на Discord-сервере в чате «заявка на роль».
+          <strong>Важно:</strong> любую роль, которая есть на сервере, вы также можете получить бесплатно,
+          написав на Discord-сервере в чате «заявка на роль».
         </div>
       </div>
     </section>
@@ -676,7 +689,9 @@
           </div>
           <h2>Увидимся на HANA</h2>
           <p>Заходи в сообщество, знакомься с участниками и задавай вопросы администрации.</p>
-          <a class="button primary" href="https://discord.gg/hx5rzG8UU6" target="_blank" rel="noopener">Перейти в Discord</a>
+          <a class="button primary" href="https://discord.gg/hx5rzG8UU6" target="_blank" rel="noopener">
+            Перейти в Discord
+          </a>
         </div>
       </div>
     </section>
@@ -710,7 +725,8 @@
       <h2 id="applicationModalTitle">Заявка на бесплатную роль</h2>
 
       <div class="application-instructions">
-        Зайдите на Discord-сервер и напишите свою заявку в чат <strong>«заявка на роль»</strong>. Скопируйте образец ниже и заполните ответы.
+        Зайдите на Discord-сервер и напишите свою заявку в чат
+        <strong>«заявка на роль»</strong>. Скопируйте образец ниже и заполните ответы.
       </div>
 
       <pre class="application-template">1. Сколько вам лет — 13/32
@@ -721,7 +737,9 @@
 
       <div class="modal-actions">
         <button class="button" id="backToBuyModal">Назад</button>
-        <a class="button" href="https://discord.gg/ctz7h4hcUx" target="_blank" rel="noopener">Подать заявку</a>
+        <a class="button" href="https://discord.gg/ctz7h4hcUx" target="_blank" rel="noopener">
+          Подать заявку
+        </a>
       </div>
     </div>
   </div>
@@ -771,21 +789,18 @@
       if (event.key === "Escape") closeAllModals();
     });
 
+    /*
+      Блоки появляются один раз и больше не скрываются при прокрутке.
+      Это предотвращает повторное мигание карточек.
+    */
     const revealObserver = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add("visible");
-
-          if (entry.target.classList.contains("role-card")) {
-            entry.target.classList.remove("icon-play");
-            void entry.target.offsetWidth;
-            entry.target.classList.add("icon-play");
-          }
-        } else {
-          entry.target.classList.remove("visible");
+          revealObserver.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.25 });
+    }, { threshold: 0.1 });
 
     document.querySelectorAll(".reveal").forEach(element => {
       revealObserver.observe(element);
@@ -793,12 +808,14 @@
 
     const canvas = document.getElementById("particles");
     const ctx = canvas.getContext("2d");
+
     let width;
     let height;
     let particles = [];
 
     function resizeCanvas() {
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
+
       width = window.innerWidth;
       height = window.innerHeight;
 
@@ -840,6 +857,7 @@
           0,
           Math.PI * 2
         );
+
         ctx.fillStyle = `rgba(${particle.color}, ${alpha})`;
         ctx.shadowBlur = 12;
         ctx.shadowColor = `rgba(${particle.color}, .8)`;
